@@ -25,7 +25,6 @@ const ToDo = () => {
   const [incomplete, setIncomplete] = useState([]);
   const { handleChange, handleSubmit } = useForm(addItem, defaultValues);
   const [currentPage, setCurrentPage] = useState(1);
-  
 
   // const [list, setList] = useState(() => {
   //   const storedItems = localStorage.getItem("items");
@@ -42,19 +41,19 @@ const ToDo = () => {
     // localStorage.setItem("items", JSON.stringify(updatedList));
     Login.addItem(item);
   }
-  useEffect( () => {
+  useEffect(() => {
     const url = `https://auth-api-33k1.onrender.com/api/v1/todo`;
-     axios.get(url)
-     .then((res)=>{
-// console.log(res.data)
+    axios.get(url).then((res) => {
+      // console.log(res.data)
       setList(res.data);
-     })
+    });
+  }, [list]);
 
-  },[list] );
-
- async function deleteItem(id) {
-     await axios.delete(`https://auth-api-33k1.onrender.com/api/v1/todo/${id}`)
-     const res=await axios.get(`https://auth-api-33k1.onrender.com/api/v1/todo`)
+  async function deleteItem(id) {
+    await axios.delete(`https://auth-api-33k1.onrender.com/api/v1/todo/${id}`);
+    const res = await axios.get(
+      `https://auth-api-33k1.onrender.com/api/v1/todo`
+    );
     // const items = list.filter((item) => item.id !== id);
     setList(res.data);
     // localStorage.setItem("items", JSON.stringify(items));
@@ -62,25 +61,16 @@ const ToDo = () => {
 
   function toggleComplete(id) {
     const items = list.map((item) => {
-    if (item.id == id) {
-      item.complete = !item.complete;
-    const url= `https://auth-api-33k1.onrender.com/api/v1/todo/${id}`
-    axios.put(url,item).then((res)=>{
-      //either:
-      // const dataArray = Object.values(res.data);
-      // console.log(dataArray)
-      // const newList = [...list, ...dataArray];
-      // console.log(newList)
-      // setList(newList);
-      //or:
-      setList([res.data])
-    })
-    }
-    return item;
-  });
-  // setList(items);
-  // localStorage.setItem("items", JSON.stringify(items));
-}
+      if (item.id == id) {
+        item.complete = !item.complete;
+        const url = `https://auth-api-33k1.onrender.com/api/v1/todo/${id}`;
+        axios.put(url, item).then((res) => {
+          setList([res.data]);
+        });
+      }
+      return item;
+    });
+  }
 
   const filteredList = !settings.complete
     ? list.filter((item) => !item.complete)
@@ -90,6 +80,19 @@ const ToDo = () => {
     (currentPage - 1) * settings.items,
     currentPage * settings.items
   );
+
+
+
+
+  // const startIndex = (currentPage - 1) * settings.items; // Display 3 items per page
+  // const endIndex = startIndex + settings.items; // Display 3 items per page
+
+  // const handlePageChange = (newPage) => {
+  //   setCurrentPage(newPage);
+  // };
+
+
+
   useEffect(() => {
     let incompleteCount = list.filter((item) => !item.complete).length;
     setIncomplete(incompleteCount);
@@ -98,7 +101,6 @@ const ToDo = () => {
 
   return (
     <>
-      <Header />
       <When condition={Login.loggedIn}>
         <div className="grid">
           <div className="item1">
@@ -161,13 +163,29 @@ const ToDo = () => {
             toggleComplete={toggleComplete}
           />
 
-          <Pagination
-            itemsPerPage={settings.items}
-            total={filteredList.length / settings.items + 2}
-            page={currentPage}
-            onChange={(newPage) => setCurrentPage(newPage)}
-            withPagesCount
-          />
+          <div className="page">
+            <Pagination
+              itemsPerPage={settings.items}
+              total={filteredList.length / settings.items + 1}
+              page={currentPage}
+              onChange={(newPage) => setCurrentPage(newPage)}
+              withPagesCount
+            />
+
+            {/* <button
+              onClick={() => handlePageChange(currentPage - 1)}
+              disabled={currentPage === 1}
+            >
+              &lt;
+            </button>
+            <span>Page {currentPage}</span>
+            <button
+              onClick={() => handlePageChange(currentPage + 1)}
+              disabled={endIndex >= incomplete}
+            >
+              &gt;
+            </button> */}
+          </div>
         </div>
       </When>
     </>

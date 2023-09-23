@@ -2,13 +2,14 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import Auth from "../auth/auth";
 
+import "./list.scss"
 const List = (props) => {
 
   return (
     <>
    
 
-    <div>
+    <div className="todoList">
       {props.items.map((item) => (
         <div className="list-item" key={item.id}>
           <p>{item.item}</p>

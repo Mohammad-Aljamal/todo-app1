@@ -3,6 +3,7 @@ import {When} from 'react-if';
 
 import { LoginContext } from '../../Context/Settings/context.jsx';
 
+import "./login.scss";
 
 export default function Login(props){
   const login = useContext( LoginContext)
@@ -40,10 +41,11 @@ export default function Login(props){
        <input
          placeholder="password"
          name="password"
+         type='password'
          onChange={handlePassword}
        />
        {/* <button>Login</button> */}
-       <input type="submit"  />
+       <input type="submit" value="Login"  />
      </form>
    </When>
  </div>

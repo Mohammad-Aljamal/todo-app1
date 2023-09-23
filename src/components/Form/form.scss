@@ -1,0 +1,25 @@
+.settingForm{
+    // display: flex;
+    justify-content: center;
+    margin: auto;
+    margin-top: 150px;
+    background-color: #78D6C6;
+    min-width: min-content;
+    border-radius: 15px;
+    // width: min-content;
+    width: 650px;
+    padding: 10px;
+    margin-bottom: 207px;
+}
+
+.paePage{
+    display: flex;
+    margin-bottom: 20px;
+    // display: inline;
+}
+
+
+.paePage input{
+    margin-right: 20px;
+    margin-left: 5px;
+}

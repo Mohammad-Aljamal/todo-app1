@@ -3,19 +3,28 @@
 color:rgb(244, 244, 248);
 margin-left: 50px;
 padding-right: 20px;
-
-
 }
+
 #Settings{
-    color:rgb(255, 255, 255)
+    color:rgb(255, 255, 255);
 }
-.home{
-    background-color: #228be6;
 
+.home{
+    background-color: #35878d;
+    height: 80px;
+    display: flex;
+    padding-top: 20px;
+    
 }
+
 .log{
 position: absolute;
 right: 15px;
-top: 0px;
-
+margin-bottom: 50px;
 }
+
+// .home p{
+//     display: flex;
+//     margin-top: 50px;
+
+// }

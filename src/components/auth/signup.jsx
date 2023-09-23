@@ -3,6 +3,8 @@ import { When } from "react-if";
 
 import { LoginContext } from "../../Context/Settings/context.jsx";
 
+import "./signup.scss";
+
 export default function SignUp(props) {
   const login = useContext(LoginContext);
 
@@ -27,11 +29,12 @@ export default function SignUp(props) {
     e.target.reset()
   };
   return (
+    <div className="mainSignup">
     <div className={"singUp"}>
 
       <When condition={!login.loggedIn}>
         <form onSubmit={handleSubmit}>
-          <p>SignUp</p>
+          <p><b>SignUp</b></p>
           <input
             placeholder="UserName"
             name="username"
@@ -40,6 +43,7 @@ export default function SignUp(props) {
           <input
             placeholder="password"
             name="password"
+            type="password"
             onChange={handlePassword}
           />
           <input
@@ -47,9 +51,10 @@ export default function SignUp(props) {
             name="role"
             onChange={handleRole}
           />
-          <input type="submit" />
+          <input type="submit" value="Signup" />
         </form>
       </When>
+    </div>
     </div>
   );
 }

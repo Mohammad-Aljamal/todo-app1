@@ -10,6 +10,7 @@ export default function Header(props) {
   return (
     <>
       <div className="home">
+        <br/>
         <Link to="/" id="Home">
           Home
         </Link>
