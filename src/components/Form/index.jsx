@@ -27,7 +27,7 @@ export default function Form() {
   return (
     <div className="settingForm">
       <When condition={Login.loggedIn}>
-        <div className="paePage">
+        <div className="perPage">
           <form onSubmit={HandleSubmit}>
             <label>Task per page: </label>
             <input type="text" name="tasks" defaultValue={state.items} />

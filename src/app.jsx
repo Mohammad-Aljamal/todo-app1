@@ -25,23 +25,7 @@ export default function App() {
             <Route path="/" element={<ToDo />} />
             <Route path="/settings" element={<Form />} />
           </Routes>
-         
-          {/* <Login /> */}
-          {/* <Auth>
-          
-          </Auth>
-
-          <Auth capability="create">
-            <div>Users with create access can see this</div>
-          </Auth>
-
-          <Auth capability="update">
-            <div>Users with update access can see this</div>
-          </Auth>
-
-          <Auth capability="delete">
-            <div>Users with delete access can see this</div>
-          </Auth> */}
+        
            <SignUp/>
           </LoginProvider>
           
